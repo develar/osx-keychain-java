@@ -41,6 +41,8 @@ import java.util.Map;
  *	@author Conor McDermottroe
  */
 public class OSXKeychain {
+    private static String libraryPath;
+
 	/** The singleton instance of the keychain. Lazily loaded in
 	 *	{@link #getInstance()}.
 	 */
@@ -69,6 +71,10 @@ public class OSXKeychain {
 		}
 		return instance;
 	}
+
+    public static void setLibraryPath(String path) {
+        libraryPath = path;
+    }
 
 	/** Add a non-internet password to the keychain.
 	 *
@@ -384,6 +390,11 @@ public class OSXKeychain {
 	private static void loadSharedObject()
 	throws IOException
 	{
+        if (libraryPath != null) {
+            System.load(libraryPath);
+            return;
+        }
+
 		// Stream the library out of the JAR
 		InputStream soInJarStream = OSXKeychain.class.getResourceAsStream("osxkeychain.so");
 

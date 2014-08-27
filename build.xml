@@ -96,6 +96,11 @@
 		<jar destfile="dist/osxkeychain.jar" basedir="lib" index="true" />
 	</target>
 
+    <target name="jarOnlyJava" depends="build">
+		<mkdir dir="dist" />
+		<jar destfile="dist/osxkeychain.jar" basedir="lib" index="true" excludes="**/osxkeychain.so"/>
+	</target>
+
 	<target name="dist" depends="jar,doc">
 		<zip destfile="dist/osxkeychain.zip">
 			<zipfileset dir="." includes="README.md" prefix="osxkeychain" />
