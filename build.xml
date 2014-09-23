@@ -31,7 +31,7 @@
 		<mkdir dir="lib" />
 	</target>
 	<target name="build-java" depends="build-dest,codegen">
-		<javac destdir="lib" includeantruntime="false" debug="true">
+		<javac destdir="lib" includeantruntime="false" debug="true" target="1.6" source="1.6">
 			<src path="src/java" />
 		</javac>
 	</target>
@@ -190,7 +190,7 @@
 		</junit>
 	</target>
 	<target name="test-java-junit-build">
-		<javac destdir="lib" includeantruntime="false" debug="true" classpath="${junit.jar}">
+		<javac destdir="lib" includeantruntime="false" debug="true" classpath="${junit.jar}" target="1.6" source="1.6">
 			<src path="test/java" />
 		</javac>
 	</target>
